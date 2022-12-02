@@ -1,0 +1,67 @@
+.hero{
+        &__container{
+            position: relative;    
+            .control-btn{
+                button{
+                    // padding: 10px 5px;
+                    width: 35px;
+                    height: 35px;
+                    border-radius: 50%;
+                    outline: none;
+                    border: none;
+                    opacity: .6;
+                    z-index: 98;
+                    color: #aaa;
+                    cursor: pointer;
+                    &:hover{
+                        transition: all 0.2s linear;
+                        border: 1px sild #ccc;
+                        color: #fff;
+                        background-color:rgb(73, 60, 60);
+                        box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+                    }
+                }
+                .prev, .next{
+                    position: absolute;
+                    top: 45%;
+                   
+                }
+                .prev{
+                    left: 10px;
+                    
+                  }
+                  
+                .next{
+                    right: 10px;
+                  }
+                
+            }
+
+            .slick-dots{
+                position: absolute;
+                bottom: 10px;
+            }
+        }
+        &__item{
+            img{
+                width: 100%;
+                height: calc(100vh - 70px);
+                object-fit: cover;
+                display: block;
+            }
+        }
+
+    }
+
+    @media (max-width: 1024px) {
+        .hero{
+            &__item{
+                img{
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    display: block;
+                }
+            }
+        }
+    }

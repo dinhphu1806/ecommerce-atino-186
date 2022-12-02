@@ -1,0 +1,148 @@
+@import '../sass//_mixin';
+table{
+    thead{        
+        tr{
+            
+            td{
+                border-bottom: 1px solid #ccc;
+                text-align: center;
+                padding: 10px 30px;   
+                color: #000;
+                font-weight: 600;
+                font-size: 16px;  
+            }
+            
+        }
+    }
+    tbody{
+        tr{
+            
+            td{
+                border-bottom: 1px solid #ccc;
+                padding: 0px 10px;
+                text-align: center;
+                
+                img{
+                    width: 70px;
+                    height: 70px;
+                    object-fit: cover;
+                }
+            }
+            .dlt{
+                text-align: center;
+            }
+
+        }
+    }
+}
+.cart__list{
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 20px;
+    .cart__subtotal{
+        @include flex(space-between, center);
+        h3{
+            font-size: 18px;
+            font-weight: 500;
+        }
+        span{
+            font-size: 23px;
+            font-weight: 700;
+        }
+    }
+    .sub__text{
+        margin: 10px 0;
+    }
+    .buy__btn{
+        width: 100%;
+        background-color: #081833;
+        padding: 20px;
+        @include flex(center, center);
+        a{
+            color: #fff;
+            display: block;
+        }
+    }
+}
+.delete__icon{
+    font-size: 18px;
+    
+}
+
+@media (max-width: 920px) {
+    table{
+        thead{        
+            tr{
+                td{
+                    padding: 10px 20px;  
+                    font-size: 14px;  
+                }
+                
+            }
+        }
+        tbody{
+            tr{
+                td{
+                    padding: 0px 7px;     
+                    img{
+                        width: 60px;
+                        height: 60px;
+                        object-fit: cover;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 550px) {
+    table{
+        thead{        
+            tr{
+                td{
+                    padding: 10px 20px;  
+                    font-size: 13px;  
+                }
+                
+            }
+        }
+        tbody{
+            tr{
+                td{
+                    padding: 0px 7px;     
+                    img{
+                        width: 50px;
+                        height: 50px;
+                        object-fit: cover;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 440px) {
+    table{
+        thead{        
+            tr{
+                td{
+                    padding: 10px 15px;  
+                    font-size: 13px;  
+                }
+                
+            }
+        }
+        tbody{
+            tr{
+                td{
+                    padding: 0px 6px;     
+                    img{
+                        width: 400px;
+                        height: 40px;
+                        object-fit: cover;
+                    }
+                }
+            }
+        }
+    }
+}

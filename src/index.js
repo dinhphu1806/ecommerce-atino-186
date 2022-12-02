@@ -1,17 +1,39 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
+import './sass/index.scss';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
+import { BrowserRouter } from 'react-router-dom';
+//12
+import { ToastContainer } from 'react-toastify';
+// 13
+import 'react-toastify/dist/ReactToastify.css';
+
+// từ file store
+import store from './redux/store';
+/// setting npm install react-redux
+import { Provider } from 'react-redux';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <Provider store={store}>   {/*// connect reacr-redux provider làm cho store có thể truy cập đến component, vì vậy toàn toàn bộ app đều access được đến store */}
+          <ToastContainer
+          theme="dark"
+            position="top-right"
+            autoClose={500}
+            closeOnClick
+            pauseOnHover={false}
+          />    
+          {/* // xong import Toast tren */}
+            {/* Same as */}
+          <ToastContainer />
+          <App />
+      </Provider>
+    </BrowserRouter>
   </React.StrictMode>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+
+
+

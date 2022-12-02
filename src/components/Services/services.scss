@@ -1,0 +1,51 @@
+
+@import '../../sass/_mixin';
+
+.services{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   overflow: hidden;
+   
+   &__container{
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 30px; 
+        
+   }
+    &__item{
+        display: flex;
+        align-items: center;
+        padding: 20px;
+        cursor: pointer;
+    }
+    &__icon{
+            width: 50px;
+            height: 50px;
+            background-color: green;
+            font-size: 26px;
+            border-radius: 50%;
+            @include flex(center, center);
+            color: #fff;
+            margin-right: 10px;
+    }
+    &__title{
+        h3{
+            font-size: 16px;
+            font-weight: 700;
+        }
+    }
+}
+
+@media (max-width: 576px) {
+    .services{
+            .ant-row{
+                @include flex(center, center);
+               .ant-col{
+                    width: 100% !important;
+               }
+            }
+          
+        
+    }
+}

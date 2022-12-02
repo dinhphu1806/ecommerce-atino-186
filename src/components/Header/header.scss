@@ -1,0 +1,189 @@
+@use '../../sass/' as *;
+@import  '../../sass/_mixin';
+
+.header{
+        max-width: 1100px;
+        margin: 0 auto;
+        height: $header-height;
+        line-height: $header-height;
+       
+    &__container{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 20px;
+    }
+    // logo
+    &__logo{
+        display: flex;
+        align-items: center;
+        column-gap: 8px;
+        color: $color-black;
+        &__title{
+            h1{
+                font-size: 1.5rem;
+                font-weight: 700;
+                color: $color-logo;
+            }
+        }
+    }
+
+    // menu
+    &__menu{
+        display: flex;
+        align-items: center;
+        column-gap: 2.7rem;
+        li {
+            a{
+                display: block;
+                color: $color-black;
+                font-weight: 600;
+                font-size: 18px;
+                
+            }
+        }
+    }
+
+    // icon
+    &__icon{
+        display: flex;
+        align-items: center;
+        column-gap: 1.1rem;
+        position: relative;
+        a{
+                font-size: 1.3rem;
+                color: $color-black;
+            }
+        &__heart, &__cart{
+            position: relative;
+           
+            .badge__num{
+                position: absolute;
+                top: 12px;
+                left: 16px;
+                width: 15px;
+                height: 15px;
+                background-color: red;
+                text-align: center;
+                border-radius: 50%;
+                color: #fff;
+                font-size: 10px;
+                font-weight: 700;
+                z-index: 999;
+                @include flex(center, center);
+                
+            }
+            
+          
+        }
+    }
+
+    // mobile menu
+    &__mobile{
+        &__icon{
+            font-size: 1.2rem;
+            color: $color-black;
+            font-weight: 600;
+            display: none;
+        }
+    }
+
+}
+.active{
+    font-weight: 800;
+    text-decoration: underline;
+}
+@media (max-width: 1024px) {
+    .sticky{
+        padding: 20px 30px !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .header{
+        // &__active{
+        //     font-weight: 600 !important;
+        // 
+        .header__container{
+            .header__mobile__icon{
+                display: block;
+            }
+            .header__nav{
+                .header__menu{
+                    display: none;
+                }
+                .header__mobile__menu{
+                    position: fixed;
+                    top: 70px;
+                    left: 0;
+                    display: flex;
+                    flex-direction: column;
+                    text-align: center;
+                    width: 100%;
+                    height: 100vh;
+                    z-index: 999;
+                    color: #fff;
+                    background-color: #08162f;
+                    transition: all 0.5s ease-in linear;
+                    animation: fadeinNavbar .5s linear;
+                    @keyframes fadeinNavbar {
+                        from {
+                            transform: translateX(200px);
+                        } to{
+                            transform: translateX(0);
+                        }
+                    }
+                    &.active{
+                        left: -100%;
+                        transition: all 0.2s linear;
+                    }
+                }
+            }
+        }
+    
+    }
+    .sticky{
+        padding: 20px 30px !important;
+    }
+
+}
+
+@media (max-width: 440px) {
+    .header{
+        &__container{
+            padding: 0 10px !important;
+        }
+        &__logo{
+            display: flex;
+            align-items: center;
+            column-gap: 8px;
+            color: $color-black;
+            
+        }
+    }
+    .Toastify__toast-container{
+        width: 80vw;
+    }
+}
+
+.sticky{
+    width: 100%;
+    height: $header-height;
+    padding: 20px 100px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    background-color: #fff;
+    box-shadow: -1px 11px 24px -11px rgba(0, 0, 0, 0.2);
+    transition: all 0.5s linear;
+    animation: headerzoom 1s;
+}
+@keyframes headerzoom {
+    from{
+        transform: translateY(-200px);
+    }
+    to{
+        transform: translateX(0);
+    }
+}
