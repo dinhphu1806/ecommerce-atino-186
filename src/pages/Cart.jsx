@@ -2,7 +2,8 @@ import React from 'react';
 import CommonSecsion from '../components/UI/CommonSecsion';
 import '../sass/cart.scss';
 import { Row, Col, Button } from 'antd';
-// import products from '../assets/datay/Product';
+// import products from '../assets/data/Product';
+import img from '../assets/images/arm-chair-01.jpg';
 import { motion } from 'framer-motion';
 
 // use when create layout
@@ -46,7 +47,7 @@ const Cart = () => {
                               <Tr item={item} index={index} />
                               )
                             
-                          })``}
+                          })}
                       </tbody>
 
                       {/* sang cardSlide delete */}
