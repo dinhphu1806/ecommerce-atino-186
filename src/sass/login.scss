@@ -1,0 +1,77 @@
+
+.form__login{
+    max-width: 350px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   
+    .form__heading{
+        text-align: center;
+        font-size: 26px;
+        font-weight: 700;
+        margin: 20px;
+       
+    }
+    .form__group{
+        position: relative;
+       
+        input{
+            padding: 10px 40px;
+            &:focus{
+                border: 1px solid #4096ff;
+                box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+            }
+        }
+        .fa-solid{
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translate(60%, -50%);
+            font-size: 20px;
+        }
+        
+       
+    }
+    .checkbox{
+        margin-left: 10px;
+    }
+    .btn{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 10px;
+        .buy__btn{
+            padding: 10px 25px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #081833;
+            
+        }
+    }
+    p{
+        margin-bottom: 20px ;
+        a{
+            &:hover{
+                text-decoration: underline;
+            }
+        }
+    }
+    
+}
+.loading{
+    margin: 30px;
+    text-align: center;
+    font-size: 18px;
+}
+@media (max-width: 768px) {
+    .form__login{
+        max-width: 450px;
+       
+    }
+}
+
+
+
+

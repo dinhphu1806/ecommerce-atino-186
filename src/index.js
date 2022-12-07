@@ -19,7 +19,7 @@ root.render(
     <BrowserRouter>
       <Provider store={store}>   {/*// connect reacr-redux provider làm cho store có thể truy cập đến component, vì vậy toàn toàn bộ app đều access được đến store */}
           <ToastContainer
-          theme="dark"
+            theme="dark"
             position="top-right"
             autoClose={500}
             closeOnClick

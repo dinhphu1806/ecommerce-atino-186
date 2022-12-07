@@ -43,7 +43,7 @@
         color: rgba(255, 255, 255, 0.925);
     }
     &__bottom{
-        margin-top: 20px;
+        margin-top: 10px;
         padding: 10px;
         p{      
             color: #fff;
@@ -85,11 +85,25 @@
             max-width: 1200px;
             padding: 30px;
         }
+        &__bottom{
+            padding: 0px;
+            p{      
+                font-size: 12px;
+            }
+            
+        }
     }
 }
 @media (max-width: 390px) {
     .footer{
         &__bottom{   
+            p{      
+                font-size: 12px;
+            }    
+        }
+        &__bottom{
+            margin-top: 8px;
+            padding: 0px;
             p{      
                 font-size: 12px;
             }

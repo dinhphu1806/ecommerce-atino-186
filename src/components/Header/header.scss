@@ -59,11 +59,11 @@
            
             .badge__num{
                 position: absolute;
-                top: 12px;
+                top: 18px;
                 left: 16px;
                 width: 15px;
                 height: 15px;
-                background-color: red;
+                background-color: #cc0000;
                 text-align: center;
                 border-radius: 50%;
                 color: #fff;
@@ -74,7 +74,14 @@
                 
             }
             
-          
+        &__login{
+            img{
+                width: 35px;
+                height: 35px;
+                object-fit: cover;
+            }
+            
+        }  
         }
     }
 
@@ -93,6 +100,35 @@
     font-weight: 800;
     text-decoration: underline;
 }
+
+.header__icon__login{
+    position: relative;
+}
+.login__list__action{
+    position: absolute;
+    top: 50px;
+    left: -100px;
+    width: 130px;
+    z-index: 10;
+    background-color: #ccc;   
+    line-height: 40px;
+    display: none;
+    cursor: pointer;
+    .flex{
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        a{
+            font-size: 16px;
+            font-weight: 400;
+        } 
+    }
+    
+}
+.show__list__action{
+    display: block;  // dungf uref
+}
+
 @media (max-width: 1024px) {
     .sticky{
         padding: 20px 30px !important;
@@ -117,12 +153,13 @@
                     top: 70px;
                     left: 0;
                     display: flex;
+                    // justify-content: center;
+                    align-items: center;
                     flex-direction: column;
                     text-align: center;
                     width: 100%;
                     height: 100vh;
                     z-index: 999;
-                    color: #fff;
                     background-color: #08162f;
                     transition: all 0.5s ease-in linear;
                     animation: fadeinNavbar .5s linear;
@@ -136,6 +173,16 @@
                     &.active{
                         left: -100%;
                         transition: all 0.2s linear;
+                    }
+                    li{
+                        &:nth-child(1){
+                            margin-top: 30px;
+                        }
+                        a{
+                            color: #fff;
+                            display: block;
+                            text-transform: uppercase;
+                        }
                     }
                 }
             }

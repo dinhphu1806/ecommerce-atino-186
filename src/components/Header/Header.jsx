@@ -1,16 +1,26 @@
 import React from 'react';
-import { useState, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import './header.scss';
 import { motion } from 'framer-motion'; 
+import imgUser from '../../assets/images/user-avatar.png';
 
-import { FaShoppingBag, FaRegUserCircle, FaBars } from 'react-icons/fa';
+import { FaShoppingBag, FaBars } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 import { ImCross } from 'react-icons/im';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
 import { menuData } from './MenuData';
 //15
 import { useSelector } from 'react-redux';
+
+// useAuth
+import useAuth from '../../custom-hooks/useAuth';
+
+
+// use when create modal sign in sign up
+import { signOut } from 'firebase/auth';
+import { auth } from '../../firebase.config';  // funx logout
+import { toast } from 'react-toastify';
 
 const Header = () => {
 
@@ -18,13 +28,29 @@ const Header = () => {
 
   const [ isActive, setIsActive ] = useState(false)
 
-  const headerRef = useRef(null)
+  const headerRef = useRef(null) // use useRef when make stiky header
 
   const navigate = useNavigate()
   //16
   const totalQuantity = useSelector(state => state.cart.totalQuantity)
   // xuống chõ icon cart
 
+
+  // useAuth
+  const { currentUser } = useAuth() // xuoong cho img user
+
+  // show list action user login log out
+  const profileAction = useRef(null)  // const toggle profileAction
+
+  // use after import logOut and auth 
+  const logout = () => {
+    signOut(auth).then(err => {
+      toast.success('Logged out')  
+      navigate('/home')  // after when logout back to page home
+    }).catch(err => {
+      toast.error(err.message)  // xuong onclick logout
+    })
+  }
 
   // sticky header
   const stickyHeader = () => {
@@ -36,9 +62,10 @@ const Header = () => {
       }
     })
   }
+ 
   useEffect(() => {
     stickyHeader()
-
+// cleanup func memory 
     return () => window.removeEventListener('scroll', stickyHeader)
   })
 
@@ -48,6 +75,9 @@ const Header = () => {
       navigate('/cart')
   }
 
+  const toggleProfileAction = () => {
+    profileAction.current.classList.toggle('show__list__action')  // xuong ref={profileAction}
+  }
   return (
     <div className='header'>
       <div className="header__container" ref={headerRef}>
@@ -77,14 +107,14 @@ const Header = () => {
 
         {/* header icon */}
         <div className="header__icon">
-            <NavLink className='header__icon__heart'>
+            <span className='header__icon__heart'>
               <motion.i whileTap={{scale: 1.2}}  class="fa-solid fa-heart"></motion.i>
               <div className="badge__num">
                   0
-                </div>
-            </NavLink>
+              </div>
+            </span>
             
-            <NavLink to="/cart" className="header__icon__cart" onClick={navigateToCart}>
+            <span className="header__icon__cart" onClick={navigateToCart}>
                <i class="fa-solid fa-cart-plus">
                 <div className="badge__num">
                   {totalQuantity}
@@ -94,17 +124,52 @@ const Header = () => {
               {/* <span className='badge'> */}
                 
               {/* </span> */}
-            </NavLink>
+            </span>
 
-            <NavLink to="/login" className="header__icon__login">
-              <FaRegUserCircle />
+            {/* <span to='login' className="header__icon__login">
+              <FaRegUserCircle /> */}
               
-            </NavLink>
+              {/* <motion.img whileTap={{scale: 1.2}}  
+                src={ currentUser ? currentUser.photoURL
+                : <FaRegUserCircle /> } alt="" /> */}
+             {/*them name */}
+            {/* <p>{currentUser.displayName}</p> */}
+              
+            {/* </span> */}
+
+
+            <div className="header__icon__login">
+             
+              {/* <FaRegUserCircle /> */}
+              {/* <motion.img whileTap={{scale: 1.2}}  
+                src={ currentUser ? currentUser.photoURL
+                : <FaRegUserCircle /> } alt="" /> */}
+             {/*them name */}
+              {/* <p>{currentUser.displayNam  e}</p> */}
+              <motion.img whileTap={{scale: 1.2}} 
+                style={{width: '30px', height: '30px', objectFit: 'cover'}} 
+                src={currentUser ? currentUser.photoURL : imgUser} 
+                alt="" 
+                onClick={toggleProfileAction}
+              />
+
+              {/* <p>{currentUser.displayName}</p> */}
+              <div className="login__list__action" ref={profileAction} onClick={toggleProfileAction}>
+                {
+                  currentUser ? <span onClick={logout}>Logout</span> // use after create func logout 
+                  : <div className='flex'>
+                      <Link to='/signup'>Sign up</Link>
+                      <Link to='/login'>Log in</Link>
+                  </div> 
+                }
+              </div>
+            </div>
+
 
              {/* header mobile menu */}
             <div className="header__mobile__icon" onClick={() => setOpenMobile(!openMobile)}>
                     {openMobile ? <ImCross /> : <FaBars />} 
-              </div>
+            </div>
         </div>
 
         

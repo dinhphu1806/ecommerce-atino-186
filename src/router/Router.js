@@ -9,6 +9,8 @@ import ProductDetails from '../pages/ProductDetails';
 import Shop from '../pages/Shop';
 import Signup from '../pages/Signup';
 
+import ProtectedRoute from './ProtectedRoute'; // xuoongs duoi boc <Checkout /> bang <ProtechedRoute />
+
 const Router = () => {
   return (
         <Routes>
@@ -19,7 +21,14 @@ const Router = () => {
             <Route path='/cart' element={ <Cart />} />
             <Route path='/login' element={ <Login />} />
             <Route path='/signup' element={ <Signup />} />
-            <Route path='/checkout' element={ <Checkout />} />
+            <Route 
+              path='/checkout' 
+              element={ 
+                <ProtectedRoute> 
+                  <Checkout /> 
+                </ProtectedRoute>
+              }  // xong sang header suwar cho user
+            />
             <Route path='*' element={<NotFound />} />
         </Routes>
   )
