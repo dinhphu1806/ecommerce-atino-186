@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { Row, Col, Form, Button } from "antd";
+import { Row, Col, Form, Button, Input } from "antd";
 import { Link } from "react-router-dom";
+
 import "../sass/login.scss";
 
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
@@ -30,14 +31,15 @@ const Signup = () => {
 
   const navigate = useNavigate()
 
-  
+  const onFinishFailed = (errorInfo) => {
+    console.log('Failed:', errorInfo);
+  };
 
   const onFinish = async (e) => {
     // e.preventDefault(); 
     setLoading(!loading);
 
     try {
-
       const userCredential = await createUserWithEmailAndPassword(
         auth,
         email,
@@ -76,16 +78,18 @@ const Signup = () => {
       toast.success('Account create succesfully') // toast succes
       navigate('/login') // navigate page login
 
-      // console.log(user); // xong xuống chỗ Form onSubmit
+      // console.log(user); // xong down form onFinish/onSubmit
     } catch (error) {
       setLoading(false) // run loading after 3s
       toast.error('something went wrong') //1 baos error create account 
     }
   };
 
+
   return (
     <section>
       <Row className="form__login">
+        {/* when click button signup succesfully is loading 3s router page login  */}
         {
           loading ? <Col lg={24} className=''>
             <h6>Loading ....</h6>
@@ -93,12 +97,31 @@ const Signup = () => {
           :  <Col sm={24} md={24}>
           <h3 className="form__heading">Sign Up</h3>
 
-          <Form onFinish={onFinish} initialValues={{ remember: true }}>
-            <Form.Item 
-              className="form__group"
+          <Form 
+              onFinish={onFinish} 
+              onFinishFailed={onFinishFailed}
+              initialValues={{ remember: true }}
+              name="basic"
+              labelCol={{span: 8}}
+              wrapperCol={{ span: 16}}
+              autoComplete="off"
+              // validateMessages={validateMessages}
             >
-              <i class="fa-solid fa-user"></i>
-              <input
+
+              {/* username */}
+            <Form.Item 
+              // className="form__group"
+              label="Username"
+              name="username"
+              rules={[
+                {
+                  required: true,
+                  message: 'Please input your username!',
+                },
+              ]}
+            >
+              {/* <i class="fa-solid fa-user"></i> */}
+              <Input
                 type="text"
                 id="username"
                 placeholder="Username"
@@ -106,11 +129,26 @@ const Signup = () => {
                 onChange={(e) => setUsername(e.target.value)}
               />
             </Form.Item>
+
+            {/* email */}
             <Form.Item 
-              className="form__group"
+              // className="form__group"
+              name="email"
+              label="Email"
+              rules={[
+                {
+                  type: 'email',
+                  message: 'The input is not valid email!',
+                },
+                {
+                  required: true,
+                  message: 'Please input your email!',
+                },
+                
+              ]}
             >
-              <i class="fa-solid fa-envelope"></i>
-              <input
+              {/* <i class="fa-solid fa-envelope"></i> */}
+              <Input
                 type="email"
                 id="email"
                 placeholder="Email"
@@ -118,11 +156,21 @@ const Signup = () => {
                 onChange={(e) => setEmail(e.target.value)}
               />
             </Form.Item>
-            <Form.Item 
-              className="form__group"
+
+            {/* password */}
+            <Form.Item
+              // className="form__group"
+              name="password"
+              label="Password"
+              hasFeedback
+              rules={[
+                {
+                  required: true,
+                  message: 'Please input your password!',
+                },
+              ]}
             >
-              <i class="fa-solid fa-lock"></i>
-              <input
+              <Input.Password 
                 type="password"
                 id="password"
                 placeholder="Enter your password"
@@ -130,12 +178,47 @@ const Signup = () => {
                 onChange={(e) => setPassword(e.target.value)}
               />
             </Form.Item>
+
+            {/* confirm password */}
+            <Form.Item
+              name="confirm"
+              label="Confirm Password"
+              dependencies={['password']}
+              hasFeedback
+              rules={[
+                {
+                  required: true,
+                  message: 'Please confirm your password!',
+                },
+                // check confirm password
+                ({ getFieldValue }) => ({
+                  validator(_, value) {
+                    if (!value || getFieldValue('password') === value) {
+                      return Promise.resolve();
+                    }
+                    return Promise.reject(new Error('The two passwords that you entered do not match!'));
+                  },
+                }),
+              ]}
+            >
+              <Input.Password 
+                  type="password"
+                  id="password"
+                  placeholder="Confirm your password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+              />
+            </Form.Item>
+
+            {/* file select */}
             <Form.Item className="form__group">
               <input 
                 type="file" 
                 id="file"  
+                // only get the first file
                 onChange={(e) => setFile(e.target.files[0])} />
             </Form.Item>
+            
             
             <Form.Item 
               className="btn"
@@ -156,6 +239,7 @@ const Signup = () => {
         }
        
       </Row>
+
     </section>
   );
 };

@@ -3,6 +3,7 @@
 // rxslice
 import { createSlice } from '@reduxjs/toolkit'
 
+// get cartItems into localStorage
 const items = 
     localStorage.getItem('cartItems') !== null 
         ? JSON.parse(localStorage.getItem('cartItems')) 
@@ -17,6 +18,8 @@ const totalQuantity =
     localStorage.getItem('totalQuantity') !== null 
         ? JSON.parse(localStorage.getItem('totalQuantity')) 
         : 0;
+
+// save into localStorage
 
 const setItemFunc = (item, totalAmount, totalQuantity) => {
     localStorage.setItem('cartItems', JSON.stringify(item))
@@ -47,7 +50,7 @@ const CartSlide = createSlice({
         state.totalQuantity++ // tăng tổng số lượng trên icon cart
 
         if(!existingItem) {
-            state.cartItems.push({  // push infor 1 product vào cartItems 
+            state.cartItems.push({  // push info 1 product into cartItems 
                 id: newItem.id,
                 imgUrl: newItem.imgUrl,
                 productName: newItem.productName,
@@ -56,10 +59,11 @@ const CartSlide = createSlice({
                 totalPrice: newItem.price
             })
         } else{
-            existingItem.quantity++  // tằng lên 1
-            existingItem.totlPrice = Number(existingItem.totlPrice) + Number(newItem.price)
+            existingItem.quantity++  // tăng lên 1
+            existingItem.totalPrice = Number(existingItem.totalPrice) + Number(newItem.price)
         }
 
+        // tổng số hiện tại + (giá item * SL 1 item)
         state.totalAmount = state.cartItems.reduce((total, item) => total + Number(item.price) * Number(item.quantity), 0)
 
         setItemFunc(state.cartItems.map((item) => item), state.totalAmount, state.totalQuantity)
@@ -68,20 +72,23 @@ const CartSlide = createSlice({
     // console.log(state.totalQuantity) // hien số lượng 1 sp
     // console.log(state.cartItems)  // chua data 1 sp
    // console.log(newItems)
+
+   // delete item
    deleteItem:(state, action) => {
     const id = action.payload
+    // find id if id === id 
     const existingItem = state.cartItems.find(item => item.id === id)
 
     if(existingItem) {
-        state.cartItems = state.cartItems.filter(item => item.id !== id)
-        state.totalQuantity = state.totalQuantity - existingItem.quantity
+        state.cartItems = state.cartItems.filter(item => item.id !== id) // filter id 
+        state.totalQuantity = state.totalQuantity - existingItem.quantity // totalQuantity - quantity
     }
 
-    state.totalAmount = state.cartItems.reduce((total, item) => total + Number(item.price) * Number(item.quantity), 
-       0
-    );
-     // save in localStorage
-    
+    // calculator total price in cart
+
+    state.totalAmount = state.cartItems.reduce((total, item) => total + Number(item.price) * Number(item.quantity), 0);
+     
+    // save in localStorage
 
      setItemFunc(state.cartItems.map((item) => item), state.totalAmount, state.totalQuantity)
 

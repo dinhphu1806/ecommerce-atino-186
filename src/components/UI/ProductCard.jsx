@@ -1,6 +1,6 @@
 import React from "react";
 import "./productCard.scss";
-import { Row, Col, Button } from "antd";
+import { Col, Button } from "antd";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 // 11 setting npm install --save react-toastify  => xong sang file index.js paste đoạn vừa copi
@@ -35,11 +35,11 @@ const ProductCard = ({ item }) => {
   // 8 xuông chỗ dấu plus
   return (
     <Col
-      xs={12}
-      sm={12}
-      md={8}
-      lg={6}
-      xl={6}
+      xs={12} // hiện 2
+      sm={12}  // hiện 2
+      md={8}   // hiện 3
+      lg={6}  // hiện 4
+      xl={6}  // hiện 4
       className="product__item"
       style={{ textAlign: "center", maxWidth: "1200px", margin: "0 auto" }}
     >
