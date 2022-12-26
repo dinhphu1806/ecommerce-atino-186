@@ -3,7 +3,6 @@ import CommonSecsion from '../components/UI/CommonSecsion';
 import '../sass/cart.scss';
 import { Row, Col, Button } from 'antd';
 // import products from '../assets/data/Product';
-import img from '../assets/images/arm-chair-01.jpg';
 import { motion } from 'framer-motion';
 
 // use when create layout

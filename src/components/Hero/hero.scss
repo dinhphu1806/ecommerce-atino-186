@@ -45,8 +45,8 @@
         &__item{
             img{
                 width: 100%;
-                height: calc(100vh - 70px);
-                object-fit: cover;
+                height: 100%;
+                object-fit: contain;
                 display: block;
             }
         }

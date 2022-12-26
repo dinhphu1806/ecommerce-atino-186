@@ -1,7 +1,6 @@
 
-
 // rxslice
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit';
 
 // get cartItems into localStorage
 const items = 

@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit"; // setting npm install @redux
 
 import CartSlide from "./slices/CartSlide"; //3 từ file store.js
 
+// save configStore to store
 const store = configureStore({
     reducer: {
         cart: CartSlide,   //4. ttheem  xong sang file productCarrd import

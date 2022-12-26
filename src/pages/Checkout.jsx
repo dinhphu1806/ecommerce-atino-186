@@ -10,6 +10,7 @@ const Checkout = () => {
 
   const totalAmount = useSelector(state => state.cart.totalAmount)
   const totalQuantity = useSelector(state => state.cart.totalQuantity)
+  
   return (
     <div>
       <section>

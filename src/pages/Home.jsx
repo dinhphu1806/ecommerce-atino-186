@@ -5,6 +5,7 @@ import Hero from "../components/Hero/Hero";
 import Services from "../components/Services/Services";
 import ProductList from "../components/UI/ProductList";
 
+import { Link } from 'react-router-dom';
 
 const Home = () => {
 //   const year = new Date().getFullYear();
@@ -12,20 +13,20 @@ const Home = () => {
   // const [ data, setData ] = useState(products)
   
   const [ trendingProducts, setTrendingProducts ] = useState([])
-  const [ sofaProducts, setSofaProducts ] = useState([])
+  const [ jacketProducts, setJacketProducts ] = useState([])
   const [ wacthProducts, SetWacthProducts ] = useState([])
 
   useEffect(() => {
 
-    const filterTrendingProducts = products.filter(item => {
+    const filterJacketProducts = products.filter(item => {
       return(
-        item.category === 'chair'
+        item.category === 'jacket'
       )
     })
 
-    const filterSofaProducts = products.filter(item => {
+    const filterTrendingProducts = products.filter(item => {
       return(
-        item.category === 'sofa'
+        item.category === 'trousers'
       )
     })
 
@@ -36,12 +37,16 @@ const Home = () => {
     })
 
     setTrendingProducts(filterTrendingProducts)
-    setSofaProducts(filterSofaProducts)
+    setJacketProducts(filterJacketProducts)
     SetWacthProducts(filterWatchProducts)
   } , [])
 
   const styleHeading = {
-    textAlign: 'center',
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    maxWidth: '1100px',
+    margin: '0 auto',
     fontSize: '36px',
     fontWeight: 'bold'
   }
@@ -53,13 +58,17 @@ const Home = () => {
       <Services />
 
       <section>
+        <div className="" style={styleHeading}>
+          <h3 >Jacket Product</h3>
+          <Link to="/shop" style={{fontSize:'17px', color:'#000'}}>All product</Link>
+        </div>
+        <ProductList data={jacketProducts}/>
+      </section>
+
+      <section>
         <h3 style={styleHeading}>Trending Armchair Product</h3>
         <ProductList data={trendingProducts}/>
-      </section>
-      
-      <section>
-        <h3 style={styleHeading}>Sofa Product</h3>
-        <ProductList data={sofaProducts}/>
+        {console.log(trendingProducts)}
       </section>
     
       <section>
@@ -67,7 +76,6 @@ const Home = () => {
         <ProductList data={wacthProducts}/>
       </section>
       
-     
     </>
     
   );

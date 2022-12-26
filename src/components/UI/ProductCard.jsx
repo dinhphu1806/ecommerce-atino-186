@@ -12,12 +12,13 @@ import { cartActions } from "../../redux/slices/CartSlide";
 
 const ProductCard = ({ item }) => {
   //7
-  const dispatch = useDispatch();
+  const dispatch = useDispatch();  
 
-  const addToCart = () => {
+  const addToCart = () => {  
+    // use dispatch send to 1 action
     dispatch(
       cartActions.addItem({
-        // lấy data 1 product vào cart
+        // get data 1 product into cart
         id: item.id,
         productName: item.productName,
         price: item.price,
@@ -25,6 +26,7 @@ const ProductCard = ({ item }) => {
       })
     );
     // alert("product added to the cart") co chu
+    // toast add to cart successfully
     toast.success("Product added successfully");
   };
 

@@ -13,7 +13,7 @@ import { menuData } from './MenuData';
 //15
 import { useSelector } from 'react-redux';
 
-// useAuth
+// import when finish useAuth protechrouter
 import useAuth from '../../custom-hooks/useAuth';
 
 
@@ -66,7 +66,7 @@ const Header = () => {
  
   useEffect(() => {
     stickyHeader()
-// cleanup func memory 
+    // cleanup func memory 
     return () => window.removeEventListener('scroll', stickyHeader)
   })
 
@@ -127,26 +127,7 @@ const Header = () => {
               {/* </span> */}
             </span>
 
-            {/* <span to='login' className="header__icon__login">
-              <FaRegUserCircle /> */}
-              
-              {/* <motion.img whileTap={{scale: 1.2}}  
-                src={ currentUser ? currentUser.photoURL
-                : <FaRegUserCircle /> } alt="" /> */}
-             {/*them name */}
-            {/* <p>{currentUser.displayName}</p> */}
-              
-            {/* </span> */}
-
-
             <div className="header__icon__login">
-             
-              {/* <FaRegUserCircle /> */}
-              {/* <motion.img whileTap={{scale: 1.2}}  
-                src={ currentUser ? currentUser.photoURL
-                : <FaRegUserCircle /> } alt="" /> */}
-             {/*them name */}
-              {/* <p>{currentUser.displayNam  e}</p> */}
               <motion.img whileTap={{scale: 1.2}} 
                 style={{width: '30px', height: '30px', objectFit: 'cover'}} 
                 src={currentUser ? currentUser.photoURL : imgUser} 

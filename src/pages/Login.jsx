@@ -3,10 +3,10 @@ import { Row, Col, Form, Button } from 'antd';
 import { Link, useNavigate } from 'react-router-dom';
 import '../sass/login.scss';
 
+// use firebase when create user success     và have loading dưới return
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../firebase.config';
 import { toast } from 'react-toastify';
-
 
 
 const Login = () => {
@@ -17,14 +17,15 @@ const Login = () => {
 
   const [ loading, setLoading ] = useState(false)
 
-  const navigate = useNavigate()
+  const navigate = useNavigate() // navigate checkout
 
   const onFinish = async () => {
     // e.preventDefault()
-    setLoading(!loading)  // true
-
+    setLoading(true)  // true
+ 
     try{
       const userCredential = await signInWithEmailAndPassword(auth, email, password)
+
       const user = userCredential.user
 
       console.log(user)
@@ -74,6 +75,7 @@ const Login = () => {
                   className='buy__btn auth__btn' 
                 >Login</Button>
               </Form.Item>
+
               <p>Don't have an account ? <Link to='/signup'>Create an account</Link></p>
           </Form>
         </Col>

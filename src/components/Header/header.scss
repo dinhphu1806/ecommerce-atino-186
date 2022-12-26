@@ -110,7 +110,8 @@
     left: -100px;
     width: 130px;
     z-index: 10;
-    background-color: #ccc;   
+    background-color: #081833;   
+  
     line-height: 40px;
     display: none;
     cursor: pointer;
@@ -121,12 +122,14 @@
         a{
             font-size: 16px;
             font-weight: 400;
+            color: #fff;
         } 
     }
     
 }
 .show__list__action{
     display: block;  // dungf uref
+    transition: all 0.2s linear;
 }
 
 @media (max-width: 1024px) {

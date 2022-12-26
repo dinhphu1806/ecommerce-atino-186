@@ -1,7 +1,8 @@
 // import React from 'react';
+// phần này sau khi finish sign up login xong
 import { useState, useEffect } from 'react';
-import { onAuthStateChanged } from 'firebase/auth';
-import { auth } from '../firebase.config'
+import { onAuthStateChanged } from 'firebase/auth';  // change user avatar
+import { auth } from '../firebase.config';
 
 const useAuth = () => {
 
@@ -18,9 +19,7 @@ const useAuth = () => {
         })
     })
 
-  return (
-    currentUser
-  )
+  return currentUser
 }
 
 export default useAuth
